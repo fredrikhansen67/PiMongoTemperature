@@ -15,7 +15,7 @@ public class PiMongoStart {
     public static void main( String[] args )
     {
         System.out.println( "Hello Mongo!" );
-        ReadFromPiFile rr = new ReadFromPiFile("C:\\aaa\\w1_bus_master1","w1_slave");
+        ReadFromPiFile rr = new ReadFromPiFile("/sys/bus/w1/devices/","w1_slave"); ///sys/bus/w1/devices/ "C:\\aaa\\w1_bus_master1","w1_slave"
         MongoDBHandler mongo = new MongoDBHandler("192.168.1.189","test", "pi", "texas");
         
         int loop = 0;

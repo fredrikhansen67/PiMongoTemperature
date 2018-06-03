@@ -21,7 +21,7 @@ public class ReadFromPiFile {
 	
 	public ReadFromPiFile(String path, String filename) {
 		this.temperaturePath = path;
-		this.fil = new File(temperaturePath+"\\"+getDevicePathValue(path, "28")+"/"+filename);
+		this.fil = new File(temperaturePath+""+getDevicePathValue(path, "28")+"/"+filename);
 	}
 	
 	public String getTemperatureFromFile() {

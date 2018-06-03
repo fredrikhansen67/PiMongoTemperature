@@ -41,11 +41,10 @@ public class MongoDBHandler {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
 		String tid = now.format(format);
 		
-		System.out.println("Date :" +localDate);
-		System.out.println("Time :" +tid);
+		System.out.println("Date :" +localDate +" "+tid);
 		
 		Document doc = new Document();
-		doc.append("time", localDate+" "+tid)
+		doc.append("time", localDate+" "+tid +"\t"+collection.count())
 		.append("sensor", sensor)
 		.append("temp", tempValue);
 		
