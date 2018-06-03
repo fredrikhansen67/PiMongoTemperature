@@ -1,35 +1,46 @@
 package PiMongo;
 
 import filehandler.ReadFromPiFile;
+import persistant.MongoDBHandler;
 
 /**
  * Main class to start the program
  * @author Fredrik Hansen
  *
  */
-public class PiMongoStart {
 
+public class PiMongoStart {
+	
 	
     public static void main( String[] args )
     {
         System.out.println( "Hello Mongo!" );
         ReadFromPiFile rr = new ReadFromPiFile("C:\\aaa\\w1_bus_master1","w1_slave");
+        MongoDBHandler mongo = new MongoDBHandler("192.168.1.189","test", "pi", "texas");
         
-        
+        int loop = 0;
         while(true) {
-        	System.out.println("hej");
+        	
         	try {
-        		System.out.println("temperature is :" + rr.getTemperatureFromFile());
-				Thread.sleep(15000);
+        		if(loop==10) {
+        			System.out.println("");
+        			loop=0;
+        		}
+        		else {
+        			mongo.saveToMongoDB("test","1", rr.getTemperatureFromFile());;
+        			System.out.print(rr.getTemperatureFromFile()+", ");
+        			loop++;
+        		}
+				Thread.sleep(1500);
+				
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				break;
 			}
         	
         }
-//        	try {
-//        	
-//        	}catch(ExitProgramException e){System.exit()}
-//        }
+        
+        
+
     }
 }
