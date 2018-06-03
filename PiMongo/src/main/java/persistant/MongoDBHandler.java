@@ -33,15 +33,14 @@ public class MongoDBHandler {
 	}
 	
 
-	public void saveToMongoDB( String dbname,String sensor, String tempValue) {
+	public void saveToMongoDB( String dbname, String collectionName, String sensor, String tempValue) {
 		MongoDatabase db = mongoClient.getDatabase(dbname);
-		this.collection = db.getCollection("TEMPERATURES");
+		this.collection = db.getCollection(collectionName);
 		LocalDate localDate = LocalDate.now();
 		LocalTime now = LocalTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
 		String tid = now.format(format);
-		
-		System.out.println("Date :" +localDate +" "+tid);
+//		System.out.println("Date :" +localDate +" "+tid);
 		
 		Document doc = new Document();
 		doc.append("time", localDate+" "+tid +"\t"+collection.count())

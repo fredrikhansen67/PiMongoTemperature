@@ -11,12 +11,18 @@ import persistant.MongoDBHandler;
 
 public class PiMongoStart {
 	
+	private static String sensor = "1";
+	private static String datebase = "test";
+	private static String mongoIP = "192.168.1.189";
+	private static String sensorPath = "/sys/bus/w1/devices/";
+	private static String sensorFile = "w1_slave";
+	private static String collectionName = "TEMPERATURES";
 	
     public static void main( String[] args )
     {
         System.out.println( "Hello Mongo!" );
-        ReadFromPiFile rr = new ReadFromPiFile("/sys/bus/w1/devices/","w1_slave"); ///sys/bus/w1/devices/ "C:\\aaa\\w1_bus_master1","w1_slave"
-        MongoDBHandler mongo = new MongoDBHandler("192.168.1.189","test", "pi", "texas");
+        ReadFromPiFile rr = new ReadFromPiFile(sensorPath,sensorFile); ///sys/bus/w1/devices/ "C:\\aaa\\w1_bus_master1","w1_slave"
+        MongoDBHandler mongo = new MongoDBHandler(mongoIP ,datebase, "pi", "texas");
         
         int loop = 0;
         while(true) {
@@ -27,11 +33,11 @@ public class PiMongoStart {
         			loop=0;
         		}
         		else {
-        			mongo.saveToMongoDB("test","1", rr.getTemperatureFromFile());;
+        			mongo.saveToMongoDB(datebase, collectionName, sensor, rr.getTemperatureFromFile());;
         			System.out.print(rr.getTemperatureFromFile()+", ");
         			loop++;
         		}
-				Thread.sleep(1500);
+				Thread.sleep(15000);
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
