@@ -43,7 +43,7 @@ public class MongoDBHandler {
 //		System.out.println("Date :" +localDate +" "+tid);
 		
 		Document doc = new Document();
-		doc.append("time", localDate+" "+tid +"\t"+collection.count())
+		doc.append("time", localDate+" "+tid)
 		.append("sensor", sensor)
 		.append("temp", tempValue);
 		

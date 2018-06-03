@@ -8,6 +8,8 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
+import PiMongo.ExitProgramException;
+
 /**
  * 
  * @author fredrik Hansen
@@ -32,8 +34,7 @@ public class ReadFromPiFile {
 			String lastDigits[] = templine.split("=");
 			temp = new DecimalFormat("##.##").format(Double.parseDouble(lastDigits[1])/1000);
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {		
 			e.printStackTrace();
 		}
 		return temp;
@@ -58,7 +59,7 @@ public class ReadFromPiFile {
 	}
 	
 	/**
-	 * This is a filter to find a unique name among the folderlist
+	 * This is a filter to find a unique name among the folder list
 	 *
 	 */
 	public static class DefinedFileNameFilter implements FilenameFilter {

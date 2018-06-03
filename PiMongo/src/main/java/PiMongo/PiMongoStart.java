@@ -11,7 +11,7 @@ import persistant.MongoDBHandler;
 
 public class PiMongoStart {
 	
-	private static String sensor = "1";
+	private static String sensor = "2";
 	private static String datebase = "test";
 	private static String mongoIP = "192.168.1.189";
 	private static String sensorPath = "/sys/bus/w1/devices/";
